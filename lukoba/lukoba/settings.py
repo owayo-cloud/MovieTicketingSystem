@@ -103,7 +103,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTH_USER_MODEL = 'user_auth.User'
+AUTH_USER_MODEL = 'user_auth.MyUser'
 
 AUTHENTICATION_BACKENDS = [
     'user_auth.backends.MyUserBackend',
@@ -131,7 +131,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'user_auth', "static"),
-    os.path.join(BASE_DIR, "chat_app", "static"),
 ]
 
 # Default primary key field type
