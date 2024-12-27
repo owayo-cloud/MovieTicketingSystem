@@ -18,16 +18,16 @@
         <a href="/" class="logo"><div class="logo_name"><span>LuK</span>oBa</div></a>
         <nav>
             <a href="/">Home</a>
-            <a href="/movies">Movies</a>
-            <a href="/contacts">Contact Us</a>
+            <a href="{% url 'movies' %}">Movies</a>
+            <a href="{% url 'contacts' %}">Contact Us</a>
             <!--<a href="/booking">Booking</a>-->
             {% if session.is_staff %} 
 				{% if session.is_superuser %}
-				<a href="/dashboard">Dashboard</a>
+				<a href="{% url 'dashboard' %}">Dashboard</a>
 				{% endif %}
-			<a href="/logout">Logout</a>
+			<a href="{% url 'logout' %}">Logout</a>
 			{% else %}
-			<a href="/login" class="sign" id="sign">Login</a>
+			<a href="{% url 'login' %}" class="sign" id="sign">Login</a>
 			{% endif %}
         </nav>
     </header>
