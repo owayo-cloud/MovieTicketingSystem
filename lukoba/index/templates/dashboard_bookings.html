@@ -1,0 +1,47 @@
+{% extends 'dashboard_base.html' %}
+{% block content %}
+<div class="header">
+    <div class="left">
+        <h1 style="letter-spacing: 10px;">BOOKINGS</h1>
+        <ul class="breadcrumb">
+            <a href="/dashboard">Dashboard</a>
+            <li><a href="#" class="active">/Bookings</a></li>
+        </ul>
+    </div>
+</div>
+<div class="bottom_data">
+    <div class="orders">
+        <div class="header">
+            <i class='bx bx-receipt'></i>
+            <h3>Recent Bookings</h3>
+            <div>
+                <i class='bx bx-filter'></i>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>User</th>
+                    <th>Movie</th>
+                    <th>Time</th>
+                    <th>Date</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for booking in bookings %}
+            <tr>
+                <td>{{booking.id}}</td>
+                <td>{{booking.user.username}}</td>
+                <td>{{booking.showtime.movie.title}}</td>
+                <td>{{booking.showtime.time}}</td>
+                <td>{{booking.showtime.date}}</td>
+                <td>{{booking.payment.amount}}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock content %}
