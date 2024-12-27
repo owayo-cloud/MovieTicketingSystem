@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuKoBa | Home </title>
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+    {% block extrastyles %}
+
+	{% endblock extrastyles %}
+
+</head>
+<body>
+    <header>
+        <a href="/" class="logo"><div class="logo_name"><span>LuK</span>oBa</div></a>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/movies">Movies</a>
+            <a href="/contacts">Contact Us</a>
+            <!--<a href="/booking">Booking</a>-->
+            {% if session.is_staff %} 
+				{% if session.is_superuser %}
+				<a href="/dashboard">Dashboard</a>
+				{% endif %}
+			<a href="/logout">Logout</a>
+			{% else %}
+			<a href="/login" class="sign" id="sign">Login</a>
+			{% endif %}
+        </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+	{% block extrascripts %}
+	<script src="{% static 'assets/js/script.js' %}"></script>
+	{% endblock extrascripts %}
+
+</body>
+</html>
