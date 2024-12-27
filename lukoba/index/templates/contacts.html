@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block extrastyles %}
 <style>
     :root {
@@ -90,10 +90,10 @@
         </div>
         <div class="social-media">
             <a href="https://twitter.com" target="_blank">
-                <img src="/static/image/twitter.png" alt="Twitter">
+                <img src="{% static 'assets/images/twitter.png' %}" alt="Twitter">
             </a>
             <a href="https://instagram.com" target="_blank">
-                <img src="/static/image/instagram.png" alt="Instagram">
+                <img src="{% static 'assets/images/instagram.png' %}" alt="Instagram">
             </a>
         </div>
     </div>
