@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block extrastyles %}
+<link rel="stylesheet" href="/static/css/booking.css">
+{% endblock extrastyles %}
+
+{% block content %}
+<div class="mid">
+    <div class="tickets">
+        <div class="ticket-selector">
+            <div class="heading">
+                <div class="title">Movie: {{movie.title}}</div>
+            </div>
+            <div class="seats">
+                <div class="status">
+                    <div class="item">Available</div>
+                    <div class="item">Booked</div>
+                    <div class="item">Selected</div>
+                </div>
+                <div class="screen"></div>
+                <div class="all-seats">
+                    <!-- Seats will be dynamically generated here -->
+                </div>
+            </div>
+            {% if showtimes %}
+
+        
+
+            {% if s_time %}
+            Showtime selected 
+            {{s_time.date}} at {{s_time.time}}
+            {% else %}
+            <div class="timings">
+                <h3>Show Times</h3>
+                <div class="list-group">
+                    {% for showtime in showtimes %}
+                    <label class="list-group-item">
+                        <input class="form-check-input me-1" type="radio" value="{{showtime.id}}" name="showtime_sel">
+                        {{showtime.date}} at {{showtime.time}}
+                        <div>
+                            <span class="badge bg-primary rounded-pill">{{showtime.seats_available}}</span>
+                        </div>
+                    </label>
+                    <br>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endif %}
+            <form method="post" action="/movies/{{ movie.imdbID }}/book" id="booking-form">
+                <label for="phone_number">
+                    <div class="input-container">
+                        <input type="text" id="phone_number" name="phone_number" placeholder="Phone Number" required>
+                        <img src="/static/image/M-PESA-logo-2.png" alt="M-Pesa Logo" class="mpesa-logo">
+                    </div>
+                </label>
+                <label for="seat_number">
+                    <div class="input-container">
+                        <input type="text" id="seat_number" name="seat_number" placeholder="Seat Number" readonly>
+                        <i class="seat-icon"></i>
+                    </div>
+                </label>
+                <input type="hidden" id="seat_price" name="seat_price" value="">
+                <input type='hidden' value="{{movie.id}}" name="movieId">
+                <input type='hidden' value="{{movie.imdb}}" name="movieImdb">
+                <input type='hidden' value="{{s_time.id}}" name="showtime">
+                <div class="total-amount">
+                    Total Amount: <span id="total_amount">0</span>
+                </div>              
+            </form>
+            <div class="book-button-container">
+                <button id="book-button">Book Now</button>
+            </div>
+            {% else %}
+            <div class="timings">
+                No Show Times Added
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block extrascripts %}
+<script type="text/javascript">
+    var bookings = "{{bookings}}";
+</script>
+<script src="/static/js/booking.js"></script>
+{% endblock extrascripts %}
