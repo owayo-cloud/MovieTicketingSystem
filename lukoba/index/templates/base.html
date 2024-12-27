@@ -21,14 +21,16 @@
             <a href="{% url 'movies' %}">Movies</a>
             <a href="{% url 'contacts' %}">Contact Us</a>
             <!--<a href="/booking">Booking</a>-->
-            {% if session.is_staff %} 
-				{% if session.is_superuser %}
-				<a href="{% url 'dashboard' %}">Dashboard</a>
-				{% endif %}
-			<a href="{% url 'logout' %}">Logout</a>
-			{% else %}
-			<a href="{% url 'login' %}" class="sign" id="sign">Login</a>
-			{% endif %}
+            {% if user.is_authenticated %}
+                {% if user.is_staff %}
+                    {% if user.is_superuser %}
+                        <a href="{% url 'dashboard' %}">Dashboard</a>
+                    {% endif %}
+                {% endif %}
+                <a href="{% url 'logout' %}">Logout</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="sign" id="sign">Login</a>
+            {% endif %}
         </nav>
     </header>
 
